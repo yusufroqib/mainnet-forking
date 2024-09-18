@@ -12,9 +12,7 @@ async function main() {
 	await helpers.impersonateAccount(TOKEN_HOLDER);
 	const impersonatedSigner = await ethers.getSigner(TOKEN_HOLDER);
 
-	const amountOut = ethers.parseUnits("1", 18);
-	const amountInMax = ethers.parseUnits("3000", 6);
-
+	
 	const USDC_Contract = await ethers.getContractAt(
 		"IERC20",
 		USDC,
@@ -41,12 +39,14 @@ async function main() {
 
 
 
-	
+
 
 	//*******************************************************SWAP TOKENS FOR EXACT ETH****************************************************************************************
 	console.log(
 		"=====================******==SWAP TOKENS FOR EXACT ETH==******====================="
 	);
+	const amountOut = ethers.parseUnits("1", 18);
+	const amountInMax = ethers.parseUnits("3000", 6);
 	const approveTx = await USDC_Contract.approve(ROUTER_ADDRESS, amountInMax);
 	await approveTx.wait();
 
